@@ -1,0 +1,67 @@
+%%%%%%%%%%%%%%%%%%%%%%%
+%       Imports       %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Imports for document styling and formatting
+\usepackage[tmargin=2cm,rmargin=1in,lmargin=1in,margin=0.85in,bmargin=2cm,footskip=.2in]{geometry} % for margins
+\usepackage{xcolor} % for colors
+\usepackage{bookmark} % for bookmarks
+\usepackage{comment} % enables to use of multiline comments (\ifx \fi)
+\usepackage{nameref} % for names
+\usepackage{transparent} % for transparency
+\usepackage[makeroom]{cancel} % for canceling terms
+\usepackage{authblk} % for author affiliations
+\usepackage{import} % for importing files
+\usepackage{pdfpages} % for including pdfs
+
+\newcommand{\incfig}[1]{
+    \def\svgwidth{\columnwidth}
+    \import{./figures/}{#1.pdf_tex}
+    } % for importing svg files
+
+\hypersetup{
+    pdftitle = {Title},
+    colorlinks = true, linkcolor = doc!50!black, citecolor = doc!50!black, urlcolor = doc!50!black,
+    bookmarksnumbered = true, bookmarksopen = true
+} % hyperlink setup and metadata for the pdf
+    
+% Imports for Math formatting and symbols
+\usepackage{amsmath, amssymb, amsthm, amsfonts, mathtools} % for math
+\usepackage[varbb]{newpxmath} % for math fonts
+\usepackage{xfrac} % for slanted fractions
+\usepackage{tikzsymbols} % for symbols    
+\renewcommand\qedsymbol{$\Laughey$} % for qed symbol
+
+% Imports for images and diagrams 
+\usepackage{graphicx} % for images
+\usepackage{tikz} % for diagrams
+\usepackage{tikz-cd} % for commutative diagrams
+
+% Imports for lists, tables, columns, and boxes 
+\usepackage{enumitem} % for lists
+\usepackage{multicol, array} % for columns and arrays
+\usepackage{varwidth} % for boxes
+\usepackage[most, many, breakable]{tcolorbox} % for boxes
+
+% Imports for code and algorithms
+\usepackage{etoolbox} % for if statements
+\usepackage{xifthen} % for if statements
+\usepackage[ruled,vlined,linesnumbered]{algorithm2e} % for algorithms
+
+\SetCommentSty{mycommfont} % for comments in algorithms
+\newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}} % for comments in algorithms
+
+% Imports for references and hyperlinks
+\usepackage{hyperref,theoremref} % for hyperlinks and references
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%        Colors       %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
