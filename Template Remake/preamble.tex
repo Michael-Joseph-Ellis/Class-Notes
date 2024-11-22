@@ -15,45 +15,50 @@
 \usepackage{pdfpages} % for including pdfs
 \setlength{\parindent}{1cm} % for paragraph indentation
 
-\newcommand{\incfig}[1]{
-    \def\svgwidth{\columnwidth}
+\newcommand{\incfig}[1]
+{
+	\def\svgwidth{\columnwidth}
     \import{./figures/}{#1.pdf_tex}
-    } % for importing svg files
-
+} % for importing svg files
+	
 \hypersetup{
-    pdftitle = {Title},
-    colorlinks = true, linkcolor = doc!50!black, citecolor = doc!50!black, urlcolor = doc!50!black,
-    bookmarksnumbered = true, bookmarksopen = true
+	pdftitle = {Title},
+	colorlinks = true, linkcolor = doc!50!black, citecolor = doc!50!black, urlcolor = doc!50!black,
+	bookmarksnumbered = true, bookmarksopen = true
 } % hyperlink setup and metadata for the pdf
-    
+
 % Imports for Math formatting and symbols
 \usepackage{amsmath, amssymb, amsthm, amsfonts, mathtools} % for math
 \usepackage[varbb]{newpxmath} % for math fonts
 \usepackage{xfrac} % for slanted fractions
-\usepackage{tikzsymbols} % for symbols    
 \renewcommand\qedsymbol{$\Laughey$} % for qed symbol
 
 % Imports for images and diagrams 
 \usepackage{graphicx} % for images
-\usepackage{tikz} % for diagrams
-\usepackage{tikz-cd} % for commutative diagrams
 
 % Imports for lists, tables, columns, and boxes 
 \usepackage{enumitem} % for lists
 \usepackage{multicol, array} % for columns and arrays
 \usepackage{varwidth} % for boxes
 \usepackage[most, many, breakable]{tcolorbox} % for boxes
+\tcbuselibrary{skins} % for tcolorbox libraries
 
 % Imports for code and algorithms
 \usepackage{etoolbox} % for if statements
 \usepackage{xifthen} % for if statements
 \usepackage[ruled,vlined,linesnumbered]{algorithm2e} % for algorithms
-
 \SetCommentSty{mycommfont} % for comments in algorithms
 \newcommand\mycommfont[1]{\footnotesize\ttfamily\textcolor{blue}{#1}} % for comments in algorithms
 
 % Imports for references and hyperlinks
 \usepackage{hyperref,theoremref} % for hyperlinks and references
+
+% Tiks
+\usepackage{tikzsymbols} % for symbols    
+\usepackage{tikz} % for diagrams
+\usepackage{tikz-cd} % for commutative diagrams
+\usetikzlibrary{arrows,calc,shadows.blur} % for tikz libraries
+
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %        Colors       %
@@ -80,11 +85,14 @@
 \definecolor{example_BG}{HTML}{f9f9f9} % light gray
 \definecolor{example_F}{HTML}{000000} % black
 \definecolor{example_TI}{HTML}{000000} % black
+\definecolor{solution_BG}{HTML}{f9f9f9} % light gray 
+\definecolor{solution_F}{HTML}{000000} % black 
+\definecolor{solution_TI}{HTML}{000000} % black 
 
 %%%%%%%%%%%%%%%%%%%%%%%
 %     TCOLORBOXES     %
 %%%%%%%%%%%%%%%%%%%%%%%
-
+\makeatletter
 % Theorem Boxes % 
 % Section Theorem 
 \newtcbtheorem[number within=section]{section_theorem}{Theorem}
@@ -252,7 +260,7 @@
 % Claim Boxes %
 % Section Claim 
 \newtcbtheorem[number within=section]{section_claim}{Claim}
-{%
+{
 	enhanced,
 	breakable,
 	colback = my_red!10,
@@ -293,7 +301,7 @@
 % Exercise Boxes %
 % Section Exercise  
 \newtcbtheorem[number within=section]{section_exercise}{Exercise}
-{%
+{
 	enhanced,
 	breakable,
 	colback = exercise_BG,
@@ -313,7 +321,7 @@
 
 % Chapter Exercise 
 \newtcbtheorem[number within=chapter]{chapter_exercise}{Exercise}
-{%
+{
 	enhanced,
 	breakable,
 	colback = exercise_BG,
@@ -334,7 +342,7 @@
 % Example Boxes %
 % Section Example 
 \newtcbtheorem[number within=section]{section_example}{Example}
-{%
+{
 	colback = example_BG,
 	breakable,
 	colframe = example_F,
@@ -352,7 +360,7 @@
 
 % Chapter Example
 \newtcbtheorem[number within=chapter]{chapter_example}{Example}
-{%
+{
 	colback = example_BG,
 	breakable,
 	colframe = example_F,
@@ -451,27 +459,318 @@
     #1
 }{definition}
 
-
-\newtcbtheorem{question}{Question}{enhanced,
-	breakable,
-	colback=white,
-	colframe=myb!80!black,
-	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
-	fonttitle=\bfseries,
-	title={#2},
-	boxed title size=title,
-	boxed title style={%
-			sharp corners,
-			rounded corners=northwest,
-			colback=tcbcolframe,
-			boxrule=0pt,
-		},
-	underlay boxed title={
-			\path[fill=tcbcolframe] (title.south west)--
-            (title.south east) to[out=0, in=180] ([xshift=5mm]title.east)--
-			(title.center-|frame.east)
-			[rounded corners=\kvtcb@arc] |-
-			(frame.north) -| cycle;
-		},
-	#1
+% Question Boxes %
+% Section Question
+\newtcbtheorem[number within=section]{section_question}{Question}
+{
+    enhanced,
+	before skip = 2mm,
+    after skip = 2mm, 
+    colback = my_green!5,
+    colframe = my_green!80!my_black,
+    boxrule = 0.5mm,
+	attach boxed title to top left = 
+    {
+        xshift = 1cm,
+        yshift* = 1mm-\tcboxedtitleheight,
+    }, 
+    varwidth boxed title* = -3cm,
+	boxed title style = 
+    {
+        frame code = 
+        {
+					\path[fill = my_green!2!my_black]
+                    ([yshift = -1mm, xshift = -1mm]frame.north west)
+					arc[start angle = 0, end angle = 180, radius = 1mm]
+					([yshift = -1mm, xshift = 1mm]frame.north east)
+					arc[start angle = 180, end angle = 0, radius = 1mm];
+					\path[left color = my_green!60!black, right color = my_green!60!black,
+						middle color = my_green!80!black]
+					([xshift = -2mm]frame.north west)-- 
+                    ([xshift = 2mm]frame.north east)[rounded corners = 1mm]-- 
+                    ([xshift = 1mm, yshift = -1mm]frame.north east)--
+					(frame.south east)-- 
+                    (frame.south west)--
+					([xshift = -1mm, yshift = -1mm]frame.north west)[sharp corners]-- 
+                    cycle;
+        },
+        interior engine = empty,
+    },
+	fonttitle = \bfseries,
+	title = {#2},
+    #1
 }{question}
+
+% Chapter Question 
+\newtcbtheorem[number within=chapter]{chapter_question}{Question}
+{
+    enhanced,
+	before skip = 2mm,
+    after skip = 2mm, 
+    colback = my_green!5,
+    colframe = my_green!80!my_black,
+    boxrule = 0.5mm,
+	attach boxed title to top left = 
+    {
+        xshift = 1cm,
+        yshift* = 1mm-\tcboxedtitleheight,
+    }, 
+    varwidth boxed title* = -3cm,
+	boxed title style = 
+    {
+        frame code = 
+        {
+					\path[fill = my_green!2!my_black]
+                    ([yshift = -1mm, xshift = -1mm]frame.north west)
+					arc[start angle = 0, end angle = 180, radius = 1mm]
+					([yshift = -1mm, xshift = 1mm]frame.north east)
+					arc[start angle = 180, end angle = 0, radius = 1mm];
+					\path[left color = my_green!60!black, right color = my_green!60!black,
+						middle color = my_green!80!black]
+					([xshift = -2mm]frame.north west)-- 
+                    ([xshift = 2mm]frame.north east)[rounded corners = 1mm]-- 
+                    ([xshift = 1mm, yshift = -1mm]frame.north east)--
+					(frame.south east)-- 
+                    (frame.south west)--
+					([xshift = -1mm, yshift = -1mm]frame.north west)[sharp corners]-- 
+                    cycle;
+        },
+        interior engine = empty,
+    },
+	fonttitle = \bfseries,
+	title = {#2},
+    #1
+}{question}
+
+% Solution Boxes % 
+% Section Solution
+\newtcbtheorem[number within=section]{section_solution}{Solution}
+{
+	colback = solution_BG,
+	breakable,
+	colframe = solution_F,
+	coltitle = solution_TI,
+	boxrule = 1pt,
+	sharp corners,
+	detach title,
+	before upper=\tcbtitle\par\smallskip,
+	fonttitle = \bfseries,
+	description font = \mdseries,
+	separator sign none,
+	description delimiters parenthesis
+}
+{solution}
+
+% Chapter Solution 
+\newtcbtheorem[number within=chapter]{chapter_solution}{Solution}
+{
+	colback = solution_BG,
+	breakable,
+	colframe = solution_F,
+	coltitle = solution_TI,
+	boxrule = 1pt,
+	sharp corners,
+	detach title,
+	before upper=\tcbtitle\par\smallskip,
+	fonttitle = \bfseries,
+	description font = \mdseries,
+	separator sign none,
+	description delimiters parenthesis
+}
+{solution}
+
+% Note Bos % 
+\newtcolorbox{note}[1][]{
+	enhanced jigsaw,
+	colback = gray!20!white,
+	colframe = gray!80!black,
+	size = small,
+	boxrule = 1pt,
+	title = \textbf{Note:-},
+	halign title = flush center,
+	coltitle = black,
+	breakable,
+	drop shadow = black!50!white,
+	attach boxed title to top left = 
+	{
+		xshift = 1cm, yshift = -\tcboxedtitleheight/2,yshifttext = -\tcboxedtitleheight/2
+	},
+	minipage boxed title = 1.5cm,
+	boxed title style = 
+	{
+			colback = white,
+			size = fbox,
+			boxrule = 1pt,
+			boxsep = 2pt,
+			underlay = {
+					\coordinate(dotA) at ($(interior.west) + (-0.5pt, 0)$);
+					\coordinate(dotB) at ($(interior.east) + (0.5pt, 0)$);
+					\begin{scope}
+						\clip(interior.north west) rectangle ([xshift = 3ex]interior.east);
+						\filldraw[white, blur shadow = {shadow opacity = 60, shadow yshift = -.75ex}, rounded corners = 2pt] (interior.north west) rectangle (interior.south east);
+					\end{scope}
+					\begin{scope}[gray!80!black]
+						\fill (dotA) circle (2pt);
+						\fill (dotB) circle (2pt);
+					\end{scope}
+				},
+		},
+	#1,
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%       Commands      %
+%\command{title}{desc}%
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Theorem Commands %
+\newcommand{\sectiontheorem}[2]
+{
+	\begin{section_theorem}{#1}{}#2\end{section_theorem}
+}
+
+\newcommand{\chaptertheorem}[2]
+{
+	\begin{chapter_theorem}{#1}{}#2\end{chapter_theorem}
+}
+
+% Corollary Commands %
+\newcommand{\sectioncorollary}[2]
+{
+	\begin{section_corollary}{#1}{}#2\end{section_corollary}
+}
+
+\newcommand{\chaptercorollary}[2]
+{
+	\begin{chapter_corollary}{#1}{}#2\end{chapter_corollary}
+}
+
+% Lemma Commands %
+\newcommand{\sectionlemma}[2]
+{
+	\begin{section_lemma}{#1}{}#2\end{section_lemma}
+}
+
+\newcommand{\chapterlemma}[2]
+{
+	\begin{chapter_lemma}{#1}{}#2\end{chapter_lemma}
+}
+
+% Proposition Commands %
+\newcommand{\sectionproposition}[2]
+{
+	\begin{section_proposition}{#1}{}#2\end{section_proposition}
+}
+
+\newcommand{\chapterproposition}[2]
+{
+	\begin{chapter_proposition}{#1}{}#2\end{chapter_proposition}
+}
+
+% Claim Commands %
+\newcommand{\sectionclaim}[2]
+{
+	\begin{section_claim}{#1}{}#2\end{section_claim}
+}
+
+\newcommand{\chapterclaim}[2]
+{
+	\begin{chapter_claim}{#1}{}#2\end{chapter_claim}
+}
+
+% Exercise Commands %
+\newcommand{\sectionexercise}[2]
+{
+	\begin{section_exercise}{#1}{}#2\end{section_exercise}
+}
+
+\newcommand{\chapterexercise}[2]
+{
+	\begin{chapter_exercise}{#1}{}#2\end{chapter_exercise}
+}
+
+% Example Commands %
+\newcommand{\sectionexample}[2]
+{
+	\begin{section_example}{#1}{}#2\end{section_example}
+}
+
+\newcommand{\chapterexample}[2]
+{
+	\begin{chapter_example}{#1}{}#2\end{chapter_example}
+}
+
+% Definition Commands %
+\newcommand{\sectiondefinition}[2]
+{
+	\begin{section_definition}{#1}{}#2\end{section_definition}
+}
+
+\newcommand{\chapterdefinition}[2]
+{
+	\begin{chapter_definition}{#1}{}#2\end{chapter_definition}
+}
+
+% Question Commands %
+\newcommand{\sectionquestion}[2]
+{
+	\begin{section_question}{#1}{}#2\end{section_question}
+}
+
+\newcommand{\chapterquestion}[2]
+{
+	\begin{chapter_question}{#1}{}#2\end{chapter_question}
+}
+
+% Solution Commands %
+\newcommand{\sectionsolution}[2]
+{
+	\begin{section_solution}{#1}{}#2\end{section_solution}
+}
+
+\newcommand{\chaptersolution}[2]
+{
+	\begin{chapter_solution}{#1}{}#2\end{chapter_solution}
+}
+
+% Note Commands %
+% Ill do this later since its buggy
+
+% My Proof Command %
+\newenvironment{myproof}[1][\proofname]
+{
+	\proof[\bfseries #1: ]
+}{\endproof}
+
+% My Claim Command % 
+\newcommand{\myclaim}[2]{\begin{my_claim}[#1]#2\end{my_claim}}
+\newenvironment{my_claim}[1][\claimname]
+{
+	\proof[\bfseries #1: ]
+}{}
+
+% Random Commands %
+\newcommand*\circled[1]{
+	\tikz[baseline = (char.base)]
+	{
+		\node[shape = circle, draw, inner sep = 1pt] (char) {#1};
+	}
+} % to circle something \circled{something}
+
+\newcommand\getcurrentref[1]
+{
+	\ifnumequal{\value{#1}}{0}
+	{??}
+	{\the\value{#1}}
+} % to get the current reference. ex: \getcurrentref{subsection}
+\newcommand{\getCurrentSectionNumber}{\getcurrentref{section}} % to get the current section number	
+\newcommand{\getCurrentChapterNumber}{\getcurrentref{chapter}} % to get the current chapter number
+
+\newcounter{mylabelcounter} % to create a counter for labels
+
+\newcommand{\setword}[2]
+{
+	\phantomsection#1\def\@currentlabel{\unexpanded{#1}}\label{#2} 
+}
+
+\makeatother
