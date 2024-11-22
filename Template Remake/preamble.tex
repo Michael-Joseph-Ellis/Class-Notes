@@ -13,6 +13,7 @@
 \usepackage{authblk} % for author affiliations
 \usepackage{import} % for importing files
 \usepackage{pdfpages} % for including pdfs
+\setlength{\parindent}{1cm} % for paragraph indentation
 
 \newcommand{\incfig}[1]{
     \def\svgwidth{\columnwidth}
@@ -58,10 +59,419 @@
 %        Colors       %
 %%%%%%%%%%%%%%%%%%%%%%%
 
+\definecolor{my_red}{HTML}{bd0000} % dark red
+\definecolor{my_blue}{HTML}{001589} % dark blue
+\definecolor{my_green}{HTML}{033b18} % dark green
+\definecolor{my_purple}{HTML}{4c0088} % dark purple
+\definecolor{my_gray}{HTML}{565656} % dark gray
+\definecolor{my_yellow}{HTML}{b9a900} % dark yellow 
+\definecolor{my_black}{HTML}{000000} % black
+
+\definecolor{theorem_BG}{HTML}{F2F2F9} % light gray
+\definecolor{theorem_F}{HTML}{00007B} % dark blue
+\definecolor{corollary_BG}{HTML}{4c0088} % dark purple
+\definecolor{corollary_F}{HTML}{000000} % black
+\definecolor{lemma_BG}{HTML}{196800} % dark green
+\definecolor{lemma_F}{HTML}{00091e} % deep dark blue
+\definecolor{proposition_BG}{HTML}{005fe8} % dark blue
+\definecolor{proposition_F}{HTML}{004246} % dark teal
+\definecolor{exercise_BG}{HTML}{f6fcfc} % blank white 
+\definecolor{exercise_F}{HTML}{417576} % deep teal
+\definecolor{example_BG}{HTML}{f9f9f9} % light gray
+\definecolor{example_F}{HTML}{000000} % black
+\definecolor{example_TI}{HTML}{000000} % black
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%     TCOLORBOXES     %
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Theorem Boxes % 
+% Section Theorem 
+\newtcbtheorem[number within=section]{section_theorem}{Theorem}
+{
+	enhanced,
+	breakable,
+	colback = theorem_BG,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{theorem_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = theorem_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, theorem_F}
+}
+{theorem}
+
+% Chapter Theorem
+\newtcbtheorem[number within=chapter]{chapter_theorem}{Theorem}
+{
+	enhanced,
+	breakable,
+	colback = theorem_BG,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{theorem_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = theorem_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, theorem_F}
+}
+{theorem}
+
+% Corollery Boxes % 
+% Section Corollary
+\newtcbtheorem[number within=section]{section_corollary}{Corollary}
+{
+	enhanced,
+	breakable,
+	colback = corollary_BG!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{my_purple!85!corollary_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = corollary_BG!85!corollary_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, corollary_BG!85!corollary_F}
+}
+{corollary}
+
+% Chapter Corollary
+\newtcbtheorem[number within=chapter]{chapter_corollary}{Corollary}
+{
+	enhanced,
+	breakable,
+	colback = corollary_BG!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{corollary_BG!85!corollary_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = corollary_BG!85!corollary_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, corollary_BG!85!corollary_F}
+}
+{corollary}
+
+% Lemma Boxes %
+% Section Lemma
+\newtcbtheorem[number within=section]{section_lemma}{Lemma}
+{
+	enhanced,
+	breakable,
+	colback = lemma_BG!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{lemma_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = lemma_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, lemma_F}
+}
+{lemma}
+
+% Chapter Lemma
+\newtcbtheorem[number within=chapter]{chapter_lemma}{Lemma}
+{
+	enhanced,
+	breakable,
+	colback = lemma_BG!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{lemma_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = lemma_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, lemma_F}
+}
+{lemma}
+
+% Proposition Boxes %
+% Section Proposition
+\newtcbtheorem[number within=section]{section_proposition}{Proposition}
+{
+	enhanced,
+	breakable,
+	colback = proposition_BG!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{proposition_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = proposition_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, proposition_F}
+}
+{proposition}
+
+% Chapter Proposition
+\newtcbtheorem[number within=chapter]{chapter_proposition}{Proposition}
+{
+	enhanced,
+	breakable,
+	colback = proposition_BG!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{proposition_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = proposition_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, proposition_F}
+}
+{proposition}
+
+% Claim Boxes %
+% Section Claim 
+\newtcbtheorem[number within=section]{section_claim}{Claim}
+{%
+	enhanced,
+	breakable,
+	colback = my_red!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{my_red},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = my_red!85!my_black,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, my_red!85!my_black}
+}
+{claim}
+
+% Chapter Claim
+\newtcbtheorem[number within=chapter]{chapter_claim}{Claim}
+{
+	enhanced,
+	breakable,
+	colback = my_red!10,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{my_red},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = my_red!85!my_black,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, my_red!85!my_black}
+}
+{claim}
+
+% Exercise Boxes %
+% Section Exercise  
+\newtcbtheorem[number within=section]{section_exercise}{Exercise}
+{%
+	enhanced,
+	breakable,
+	colback = exercise_BG,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{exercise_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = exercise_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, exercise_F},
+}
+{exercise}
+
+% Chapter Exercise 
+\newtcbtheorem[number within=chapter]{chapter_exercise}{Exercise}
+{%
+	enhanced,
+	breakable,
+	colback = exercise_BG,
+	frame hidden,
+	boxrule = 0sp,
+	borderline west = {2pt}{0pt}{exercise_F},
+	sharp corners,
+	detach title,
+	before upper = \tcbtitle\par\smallskip,
+	coltitle = exercise_F,
+	fonttitle = \bfseries\sffamily,
+	description font = \mdseries,
+	separator sign none,
+	segmentation style={solid, exercise_F},
+}
+{exercise}
+
+% Example Boxes %
+% Section Example 
+\newtcbtheorem[number within=section]{section_example}{Example}
+{%
+	colback = example_BG,
+	breakable,
+	colframe = example_F,
+	coltitle = example_TI,
+	boxrule = 1pt,
+	sharp corners,
+	detach title,
+	before upper=\tcbtitle\par\smallskip,
+	fonttitle = \bfseries,
+	description font = \mdseries,
+	separator sign none,
+	description delimiters parenthesis
+}
+{example}
+
+% Chapter Example
+\newtcbtheorem[number within=chapter]{chapter_example}{Example}
+{%
+	colback = example_BG,
+	breakable,
+	colframe = example_F,
+	coltitle = example_TI,
+	boxrule = 1pt,
+	sharp corners,
+	detach title,
+	before upper=\tcbtitle\par\smallskip,
+	fonttitle = \bfseries,
+	description font = \mdseries,
+	separator sign none,
+	description delimiters parenthesis
+}
+{example}
+
+% Definition Boxes %
+% Section Definition
+\newtcbtheorem[number within=section]{section_definition}{Definition}
+{
+    enhanced,
+	before skip = 2mm,
+    after skip = 2mm, 
+    colback = red!5,
+    colframe = red!80!black,
+    boxrule = 0.5mm,
+	attach boxed title to top left = 
+    {
+        xshift = 1cm,
+        yshift* = 1mm-\tcboxedtitleheight,
+    }, 
+    varwidth boxed title* = -3cm,
+	boxed title style = 
+    {
+        frame code = 
+        {
+					\path[fill = tcbcolback]
+                    ([yshift = -1mm, xshift = -1mm]frame.north west)
+					arc[start angle = 0, end angle = 180, radius = 1mm]
+					([yshift = -1mm, xshift = 1mm]frame.north east)
+					arc[start angle = 180, end angle = 0, radius = 1mm];
+					\path[left color = tcbcolback!60!black, right color = tcbcolback!60!black,
+						middle color = tcbcolback!80!black]
+					([xshift = -2mm]frame.north west)-- 
+                    ([xshift = 2mm]frame.north east)[rounded corners = 1mm]-- 
+                    ([xshift = 1mm, yshift = -1mm]frame.north east)--
+					(frame.south east)-- 
+                    (frame.south west)--
+					([xshift = -1mm, yshift = -1mm]frame.north west)[sharp corners]-- 
+                    cycle;
+        },
+        interior engine = empty,
+    },
+	fonttitle = \bfseries,
+	title = {#2},
+    #1
+}{definition}
+
+% Chapter Definition
+\newtcbtheorem[number within=chapter]{chapter_definition}{Definition}
+{
+    enhanced,
+	before skip = 2mm,
+    after skip = 2mm, 
+    colback = red!5,
+    colframe = red!80!black,
+    boxrule = 0.5mm,
+	attach boxed title to top left = 
+    {
+        xshift = 1cm,
+        yshift* = 1mm-\tcboxedtitleheight,
+    }, 
+    varwidth boxed title* = -3cm,
+	boxed title style = 
+    {
+        frame code = 
+        {
+					\path[fill = tcbcolback]
+                    ([yshift = -1mm, xshift = -1mm]frame.north west)
+					arc[start angle = 0, end angle = 180, radius = 1mm]
+					([yshift = -1mm, xshift = 1mm]frame.north east)
+					arc[start angle = 180, end angle = 0, radius = 1mm];
+					\path[left color = tcbcolback!60!black, right color = tcbcolback!60!black,
+						middle color = tcbcolback!80!black]
+					([xshift = -2mm]frame.north west)-- 
+                    ([xshift = 2mm]frame.north east)[rounded corners = 1mm]-- 
+                    ([xshift = 1mm, yshift = -1mm]frame.north east)--
+					(frame.south east)-- 
+                    (frame.south west)--
+					([xshift = -1mm, yshift = -1mm]frame.north west)[sharp corners]-- 
+                    cycle;
+        },
+        interior engine = empty,
+    },
+	fonttitle = \bfseries,
+	title = {#2},
+    #1
+}{definition}
 
 
-
-
-
-
-
+\newtcbtheorem{question}{Question}{enhanced,
+	breakable,
+	colback=white,
+	colframe=myb!80!black,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+	fonttitle=\bfseries,
+	title={#2},
+	boxed title size=title,
+	boxed title style={%
+			sharp corners,
+			rounded corners=northwest,
+			colback=tcbcolframe,
+			boxrule=0pt,
+		},
+	underlay boxed title={
+			\path[fill=tcbcolframe] (title.south west)--
+            (title.south east) to[out=0, in=180] ([xshift=5mm]title.east)--
+			(title.center-|frame.east)
+			[rounded corners=\kvtcb@arc] |-
+			(frame.north) -| cycle;
+		},
+	#1
+}{question}
