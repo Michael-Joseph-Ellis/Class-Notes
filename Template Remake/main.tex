@@ -1,100 +1,20 @@
 \documentclass[11pt]{report}
 
-% Inputs
 \input{preamble.tex}
+\input{macros.tex}
+
+\title{\Huge{Some Class Subject \& Number}\\Some Topic}
+\author{\huge{Michael Joseph Ellis}}
+\date{}
 
 \begin{document}
 
-% Examples of box environments % 
+\maketitle
+\newpage % or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
 
-\begin{section_theorem}{Example Section Theorem}{theorem:example}
-    This is the content of the example theorem.
-\end{section_theorem}
-
-\begin{chapter_theorem}{Example Chapter Theorem}{theorem:something}
-    This is the content of the example theorem.
-\end{chapter_theorem}
-
-\begin{section_corollary}{Example Section Corollary}{corollary:example}
-    This is the content of the example corollary.
-\end{section_corollary}
-
-\begin{chapter_corollary}{Example Chapter Corollary}{corollary:something}
-    This is the content of the example corollary.
-\end{chapter_corollary}
-
-\begin{section_lemma}{Example Section Lemma}{lemma:example}
-    This is the content of the example lemma.
-\end{section_lemma}
-
-\begin{chapter_lemma}{Example Chapter Lemma}{lemma:something}
-    This is the content of the example lemma.
-\end{chapter_lemma}
-
-\begin{section_proposition}{Example Section Proposition}{proposition:something}
-    This is the content of the example proposition.
-\end{section_proposition}
-
-\begin{chapter_proposition}{Example Chapter Proposition}{proposition:something}
-    This is the content of the example proposition.
-\end{chapter_proposition}
-
-\begin{section_claim}{Example Section Claim}{claim:something}
-    This is the content of the example claim.
-\end{section_claim}
-
-\begin{chapter_claim}{Example Chapter Claim}{claim:something}
-    This is the content of the example claim.
-\end{chapter_claim}
-
-\begin{section_exercise}{Example Section Exercise}{exercise:something}
-    This is the content of the example exercise.
-\end{section_exercise}
-
-\begin{chapter_exercise}{Example Chapter Exercise}{exercise:something}
-    This is the content of the example exercise.
-\end{chapter_exercise}
-
-\begin{section_example}{Example Section Example}{example:something}
-    This is the content of the example problem.
-\end{section_example}
-
-\begin{chapter_example}{Example Chapter Example}{example:something}
-    This is the content of the example problem.
-\end{chapter_example}
-
-\begin{section_definition}{Example Section Definition}{definition:something}
-    This is the content of the example definition.
-\end{section_definition}
-
-\begin{chapter_definition}{Example Chapter Definition}{definition:something}
-    This is the content of the example definition.
-\end{chapter_definition}
-
-\begin{section_question}{Example Section Question}{question}
-    This is the content of the example question.
-\end{section_question}
-
-\begin{chapter_question}{Example Chapter Question}{question}
-    This is the content of the example question.
-\end{chapter_question}
-
-\begin{section_solution}{Example Section Solution}{solution}
-    This is the content of the example solution.
-\end{section_solution}
-
-\begin{chapter_solution}{Example Chapter Solution}{solution}
-    This is the content of the example solution.
-\end{chapter_solution}
-
-\begin{note}
-    This is the content of the example note.
-\end{note}
-
-\myproof{This is the content of the example proof}
-
-\myclaim{This is the content of the example claim}
-
-Okay so \setword{concept}{concept} that we will refer to later 
 
 \end{document}
